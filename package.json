@@ -1,0 +1,20 @@
+{
+  "name": "advokesma-km-itera",
+  "version": "1.0.0",
+  "description": "Pusat Pengaduan dan Aspirasi Mahasiswa Advokesma KM ITERA",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "Advokesma KM ITERA",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "express": "^5.3.0",
+    "express-session": "^1.19.0",
+    "multer": "^2.4.0",
+    "sqlite3": "^6.0.1"
+  }
+}
