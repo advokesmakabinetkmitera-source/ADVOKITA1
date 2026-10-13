@@ -1,7 +1,7 @@
 const express = require('express');
 const sqlite3 = require('sqlite3').verbose();
 const multer = require('multer');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs'); // Menggunakan bcryptjs untuk menghindari error GLIBC
 const session = require('express-session');
 const path = require('path');
 const fs = require('fs');
@@ -293,7 +293,6 @@ app.post('/api/reports/track', (req, res) => {
             return res.status(404).json({ error: 'Laporan tidak ditemukan. Periksa kembali Nomor Tiket dan Kode Rahasia Anda.' });
         }
 
-        // If category is Kekerasan dan Keselamatan, sanitize sensitive public display if needed, but reporter can view their own report with secret code
         db.all(`SELECT status, message, created_at FROM report_history WHERE report_id = ? ORDER BY created_at ASC`, [report.id], (err, history) => {
             res.json({
                 success: true,
@@ -391,8 +390,7 @@ app.get('/api/admin/reports', requireAdmin, (req, res) => {
         if (err) {
             return res.status(500).json({ error: 'Gagal mengambil data laporan.' });
         }
-        
-        // For violence category, mask identity if needed in admin list view unless superadmin or officer
+
         const sanitizedRows = rows.map(r => {
             if (r.category === 'Kekerasan dan Keselamatan' && req.session.admin.role !== 'superadmin') {
                 return {
@@ -414,12 +412,6 @@ app.get('/api/admin/reports/:id', requireAdmin, (req, res) => {
     db.get(`SELECT * FROM reports WHERE id = ?`, [reportId], (err, report) => {
         if (err || !report) {
             return res.status(404).json({ error: 'Laporan tidak ditemukan.' });
-        }
-
-        // Apply strict access for violence reports
-        if (report.category === 'Kekerasan dan Keselamatan' && req.session.admin.role !== 'superadmin') {
-            // Mask sensitive identity if officer doesn't have superadmin, or keep accessible to authorized officers
-            // Let's ensure authorized officers can view it, but mark it confidential
         }
 
         db.all(`SELECT * FROM report_history WHERE report_id = ? ORDER BY created_at ASC`, [reportId], (err, history) => {
@@ -455,7 +447,6 @@ app.put('/api/admin/reports/:id', requireAdmin, (req, res) => {
                     return res.status(500).json({ error: 'Gagal memperbarui laporan.' });
                 }
 
-                // Add history if status changed or message updated
                 if (newStatus !== current.status || newMessage !== current.admin_message) {
                     db.run(`INSERT INTO report_history (report_id, status, message) VALUES (?, ?, ?)`,
                         [reportId, newStatus, `Status diperbarui ke "${newStatus}". Pesan petugas: ${newMessage}`]);
@@ -508,4 +499,5 @@ if (require.main === module) {
     });
 }
 
+// Export Express app untuk Vercel Serverless Function
 module.exports = app;
