@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ & Kebijakan Privasi — Advokesma KM ITERA</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        iteraBlue: '#0B2545',
+                        iteraDarkBlue: '#06182E',
+                        iteraGold: '#D4AF37',
+                        iteraLightGold: '#F4D03F',
+                        iteraBg: '#F8FAFC'
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+    </style>
+</head>
+<body class="bg-iteraBg text-slate-800 antialiased flex flex-col min-h-screen">
+
+    <!-- Top Emergency Bar -->
+    <div class="bg-red-600 text-white text-xs sm:text-sm py-2 px-4 text-center font-medium flex items-center justify-center gap-2">
+        <i class="fa-solid fa-triangle-exclamation"></i>
+        <span>Butuh pertolongan darurat segera? Hubungi Hotline Darurat Advokesma: <strong>0831-4218-8314</strong></span>
+    </div>
+
+    <!-- Navigation Bar -->
+    <header class="bg-iteraBlue text-white shadow-md sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <a href="index.html" class="w-12 h-12 bg-white rounded-full flex items-center justify-center text-iteraBlue font-black text-xl shadow">
+                    <i class="fa-solid fa-scale-balanced text-iteraBlue"></i>
+                </a>
+                <div>
+                    <span class="text-xs font-semibold tracking-wider text-iteraGold uppercase block">Advokesma KM ITERA</span>
+                    <h1 class="text-base sm:text-lg font-bold tracking-tight">FAQ & Privasi</h1>
+                </div>
+            </div>
+
+            <nav class="hidden md:flex items-center space-x-6 text-sm font-medium">
+                <a href="index.html" class="hover:text-iteraGold transition">Beranda</a>
+                <a href="form.html" class="hover:text-iteraGold transition">Buat Pengaduan</a>
+                <a href="tracking.html" class="hover:text-iteraGold transition">Lacak Laporan</a>
+                <a href="guide.html" class="hover:text-iteraGold transition">Panduan & Alur</a>
+                <a href="about.html" class="hover:text-iteraGold transition">Tentang Kami</a>
+                <a href="faq.html" class="text-iteraGold font-semibold hover:text-white transition">FAQ & Kontak</a>
+                <a href="admin-login.html" class="bg-iteraGold text-iteraBlue px-4 py-2 rounded-lg font-bold hover:bg-yellow-400 transition shadow">
+                    <i class="fa-solid fa-lock mr-1"></i> Admin Login
+                </a>
+            </nav>
+
+            <button id="menu-btn" class="md:hidden text-white focus:outline-none text-2xl">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Header Section -->
+    <section class="bg-iteraBlue text-white py-16 px-4">
+        <div class="max-w-4xl mx-auto text-center space-y-4">
+            <span class="bg-blue-800 text-iteraGold text-xs font-bold px-4 py-1.5 rounded-full border border-iteraGold/30 uppercase tracking-wider">Pusat Bantuan & Informasi</span>
+            <h2 class="text-3xl sm:text-5xl font-extrabold">FAQ, Kebijakan Privasi & Rujukan Darurat</h2>
+            <p class="text-slate-300 text-base sm:text-lg max-w-2xl mx-auto">
+                Jawaban atas pertanyaan umum seputar keamanan data, kerahasiaan laporan, dan kontak darurat profesional.
+            </p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="py-16 px-4 max-w-4xl mx-auto space-y-12">
+        
+        <!-- FAQ Section -->
+        <div class="bg-white p-8 sm:p-12 rounded-3xl shadow-sm border border-slate-200 space-y-8">
+            <h3 class="text-2xl font-extrabold text-iteraBlue flex items-center gap-3">
+                <i class="fa-solid fa-circle-question text-iteraGold"></i> Pertanyaan yang Sering Diajukan (FAQ)
+            </h3>
+
+            <div class="space-y-6">
+                <div class="border-b border-slate-200 pb-6">
+                    <h4 class="font-bold text-iteraBlue text-base mb-2">1. Apakah identitas saya benar-benar aman dan dirahasiakan?</h4>
+                    <p class="text-sm text-slate-600 leading-relaxed">
+                        Ya. Kami menerapkan protokol perlindungan data yang ketat. Anda dapat memilih opsi laporan dengan identitas asli, nama samaran (pseudonym), atau anonim. Untuk kasus kekerasan dan pelecehan, akses data dibatasi secara eksklusif hanya untuk Superadmin Advokesma.
+                    </p>
+                </div>
+
+                <div class="border-b border-slate-200 pb-6">
+                    <h4 class="font-bold text-iteraBlue text-base mb-2">2. Apakah bukti awal wajib dilampirkan?</h4>
+                    <p class="text-sm text-slate-600 leading-relaxed">
+                        Tidak. Lampiran bukti (foto, dokumen, tangkapan layar) bersifat opsional. Kami tidak ingin mewajibkan bukti sebagai syarat awal yang justru membebani korban atau pelapor.
+                    </p>
+                </div>
+
+                <div class="border-b border-slate-200 pb-6">
+                    <h4 class="font-bold text-iteraBlue text-base mb-2">3. Bagaimana jika saya lupa nomor tiket atau kode rahasia saya?</h4>
+                    <p class="text-sm text-slate-600 leading-relaxed">
+                        Demi menjaga kerahasiaan dan privasi, sistem kami tidak menyimpan kaitan langsung antara akun mahasiswa dengan tiket anonim. Oleh karena itu, pastikan Anda mencatat dan menyimpan Nomor Tiket serta Kode Rahasia dengan aman.
+                    </p>
+                </div>
+
+                <div>
+                    <h4 class="font-bold text-iteraBlue text-base mb-2">4. Berapa lama laporan akan ditindaklanjuti?</h4>
+                    <p class="text-sm text-slate-600 leading-relaxed">
+                        Tim Advokesma melakukan verifikasi awal dalam kurun waktu maksimal 1x24 jam sejak laporan dikirimkan melalui sistem.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Privacy Policy Section -->
+        <div id="privacy" class="bg-white p-8 sm:p-12 rounded-3xl shadow-sm border border-slate-200 space-y-6">
+            <h3 class="text-2xl font-extrabold text-iteraBlue flex items-center gap-3">
+                <i class="fa-solid fa-user-shield text-iteraGold"></i> Kebijakan Privasi & Batas Kerahasiaan
+            </h3>
+            <div class="text-sm text-slate-600 space-y-4 leading-relaxed">
+                <p>
+                    Kementerian Advokasi dan Kesejahteraan Mahasiswa (Advokesma) KM ITERA berkomitmen melindungi hak privasi setiap mahasiswa. Data yang Anda masukkan hanya digunakan untuk kepentingan pendampingan dan penyelesaian masalah.
+                </p>
+                <ul class="list-disc list-inside space-y-2">
+                    <li><strong>Penyimpanan Aman:</strong> Data pengaduan disimpan pada basis data terenkripsi dengan pembatasan akses berbasis peran (RBAC).</li>
+                    <li><strong>Batas Anonimitas:</strong> Perlu diingat bahwa tidak ada sistem digital yang memberikan anonimitas mutlak apabila terdapat metadata jaringan atau alamat IP. Kami menyarankan menggunakan jaringan aman saat melaporkan kasus sensitif.</li>
+                    <li><strong>Penghapusan Data:</strong> Permintaan penghapusan data atau penutupan laporan dapat diajukan secara resmi kepada Ketua Advokesma KM ITERA.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Emergency & Professional Referrals -->
+        <div id="emergency" class="bg-red-50 border border-red-200 p-8 sm:p-12 rounded-3xl space-y-6">
+            <h3 class="text-2xl font-extrabold text-red-800 flex items-center gap-3">
+                <i class="fa-solid fa-triangle-exclamation"></i> Kontak Darurat & Rujukan Profesional
+            </h3>
+            <p class="text-sm text-red-700 leading-relaxed">
+                Untuk kasus darurat yang membutuhkan penanganan medis segera, kepolisian, atau lembaga profesional di luar kampus, silakan hubungi layanan rujukan resmi berikut:
+            </p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div class="bg-white p-6 rounded-2xl border border-red-200 shadow-sm">
+                    <h4 class="font-bold text-iteraBlue mb-1">Hotline Darurat Advokesma KM ITERA</h4>
+                    <p class="text-base font-black text-red-600 mb-2">0831-4218-8314 (24 Jam)</p>
+                    <p class="text-xs text-slate-500">Siaga pendampingan darurat mahasiswa.</p>
+                </div>
+                <div class="bg-white p-6 rounded-2xl border border-red-200 shadow-sm">
+                    <h4 class="font-bold text-iteraBlue mb-1">Satgas PPKS ITERA</h4>
+                    <p class="text-base font-black text-blue-700 mb-2">ppks@itera.ac.id</p>
+                    <p class="text-xs text-slate-500">Satuan Tugas Pencegahan & Penanganan Kekerasan Seksual ITERA.</p>
+                </div>
+                <div class="bg-white p-6 rounded-2xl border border-red-200 shadow-sm">
+                    <h4 class="font-bold text-iteraBlue mb-1">Layanan Psikologi / Konseling Kampus</h4>
+                    <p class="text-base font-black text-blue-700 mb-2">konseling@itera.ac.id</p>
+                    <p class="text-xs text-slate-500">Layanan kesehatan mental dan konseling mahasiswa.</p>
+                </div>
+                <div class="bg-white p-6 rounded-2xl border border-red-200 shadow-sm">
+                    <h4 class="font-bold text-iteraBlue mb-1">Klinik / Rumah Sakit Rujukan</h4>
+                    <p class="text-base font-black text-blue-700 mb-2">Klinik Pratama ITERA / RSUD</p>
+                    <p class="text-xs text-slate-500">Penanganan darurat medis.</p>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-iteraDarkBlue text-white pt-12 pb-8 mt-auto border-t border-blue-900">
+        <div class="max-w-7xl mx-auto px-4 text-center text-xs text-slate-400">
+            <p class="mb-1 font-semibold text-iteraGold text-sm">Mentri Advokesma KM ITERA: Andro Gustin Ginting</p>
+            <p>&copy; 2026 Kementerian Advokasi dan Kesejahteraan Mahasiswa (Advokesma) KM ITERA. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

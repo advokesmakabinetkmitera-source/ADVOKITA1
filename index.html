@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pusat Pengaduan dan Aspirasi Mahasiswa — Advokesma KM ITERA</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        iteraBlue: '#0B2545',
+                        iteraDarkBlue: '#06182E',
+                        iteraGold: '#D4AF37',
+                        iteraLightGold: '#F4D03F',
+                        iteraBg: '#F8FAFC'
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+    </style>
+</head>
+<body class="bg-iteraBg text-slate-800 antialiased flex flex-col min-h-screen">
+
+    <!-- Top Emergency Bar -->
+    <div class="bg-red-600 text-white text-xs sm:text-sm py-2 px-4 text-center font-medium flex items-center justify-center gap-2">
+        <i class="fa-solid fa-triangle-exclamation"></i>
+        <span>Butuh pertolongan darurat segera? Hubungi Hotline Darurat Advokesma KM ITERA: <strong>0831-4218-8314</strong> atau Layanan Rujukan Kampus.</span>
+        <a href="faq.html#emergency" class="underline hover:text-yellow-200 ml-2">Lihat Kontak</a>
+    </div>
+
+    <!-- Navigation Bar -->
+    <header class="bg-iteraBlue text-white shadow-md sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div class="w-12 h-12 bg-white rounded-full flex items-center justify-center text-iteraBlue font-black text-xl shadow">
+                    <i class="fa-solid fa-scale-balanced text-iteraBlue"></i>
+                </div>
+                <div>
+                    <span class="text-xs font-semibold tracking-wider text-iteraGold uppercase block">Advokesma KM ITERA</span>
+                    <h1 class="text-base sm:text-lg font-bold tracking-tight">Pusat Pengaduan & Aspirasi</h1>
+                </div>
+            </div>
+
+            <!-- Desktop Nav -->
+            <nav class="hidden md:flex items-center space-x-6 text-sm font-medium">
+                <a href="index.html" class="text-iteraGold font-semibold hover:text-white transition">Beranda</a>
+                <a href="form.html" class="hover:text-iteraGold transition">Buat Pengaduan</a>
+                <a href="tracking.html" class="hover:text-iteraGold transition">Lacak Laporan</a>
+                <a href="guide.html" class="hover:text-iteraGold transition">Panduan & Alur</a>
+                <a href="about.html" class="hover:text-iteraGold transition">Tentang Kami</a>
+                <a href="faq.html" class="hover:text-iteraGold transition">FAQ & Kontak</a>
+                <a href="admin-login.html" class="bg-iteraGold text-iteraBlue px-4 py-2 rounded-lg font-bold hover:bg-yellow-400 transition shadow">
+                    <i class="fa-solid fa-lock mr-1"></i> Admin Login
+                </a>
+            </nav>
+
+            <!-- Mobile Menu Button -->
+            <button id="menu-btn" class="md:hidden text-white focus:outline-none text-2xl">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden bg-iteraDarkBlue px-4 pt-2 pb-4 space-y-3 border-t border-blue-900">
+            <a href="index.html" class="block text-iteraGold font-medium py-1">Beranda</a>
+            <a href="form.html" class="block hover:text-iteraGold py-1">Buat Pengaduan</a>
+            <a href="tracking.html" class="block hover:text-iteraGold py-1">Lacak Laporan</a>
+            <a href="guide.html" class="block hover:text-iteraGold py-1">Panduan & Alur</a>
+            <a href="about.html" class="block hover:text-iteraGold py-1">Tentang Kami</a>
+            <a href="faq.html" class="block hover:text-iteraGold py-1">FAQ & Kontak</a>
+            <a href="admin-login.html" class="inline-block bg-iteraGold text-iteraBlue px-4 py-2 rounded-lg font-bold mt-2">
+                <i class="fa-solid fa-lock mr-1"></i> Admin Login
+            </a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="bg-iteraBlue text-white py-24 px-4 relative overflow-hidden bg-cover bg-center" style="background-image: linear-gradient(to bottom, rgba(11, 37, 69, 0.90), rgba(6, 24, 46, 0.95)), url('https://upload.wikimedia.org/wikipedia/commons/e/e5/Gerbang_ITERA.jpg');">
+        <div class="max-w-5xl mx-auto text-center relative z-10 space-y-6">
+            <span class="inline-block bg-blue-800/80 text-iteraGold text-xs sm:text-sm font-bold px-4 py-1.5 rounded-full border border-iteraGold/30">
+                Platform Resmi Advokasi Mahasiswa KM ITERA
+            </span>
+            <h2 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight">
+                “Suaramu Berarti, Kami Siap Mendengar.”
+            </h2>
+            <p class="text-base sm:text-xl text-slate-300 max-w-3xl mx-auto leading-relaxed">
+                Ruang aman untuk menyampaikan pengaduan, mencari pendampingan, dan memperjuangkan lingkungan kampus Institut Teknologi Sumatera (ITERA) yang aman, adil, serta transparan.
+            </p>
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
+                <a href="form.html" class="w-full sm:w-auto bg-iteraGold text-iteraBlue font-bold px-8 py-4 rounded-xl shadow-lg hover:bg-yellow-400 transition text-center text-lg flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-paper-plane"></i> Buat Pengaduan
+                </a>
+                <a href="form.html?type=aspirasi" class="w-full sm:w-auto bg-white/10 text-white border border-white/20 font-bold px-8 py-4 rounded-xl hover:bg-white/20 transition text-center text-lg flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-bullhorn"></i> Sampaikan Aspirasi
+                </a>
+                <a href="tracking.html" class="w-full sm:w-auto bg-blue-800/50 text-white border border-blue-600 font-bold px-8 py-4 rounded-xl hover:bg-blue-800 transition text-center text-lg flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-magnifying-glass"></i> Lacak Laporan
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories Summary Section -->
+    <section class="py-16 px-4 max-w-7xl mx-auto">
+        <div class="text-center mb-12 space-y-2">
+            <h3 class="text-xs uppercase tracking-widest font-bold text-blue-700">Kategori Layanan</h3>
+            <h2 class="text-2xl sm:text-4xl font-extrabold text-iteraBlue">Apa yang Ingin Anda Sampaikan?</h2>
+            <p class="text-slate-600 max-w-2xl mx-auto">Kami menampung berbagai laporan dan aspirasi mahasiswa ITERA dengan jaminan kerahasiaan dan penanganan profesional.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <!-- Category 1 -->
+            <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-200 hover:shadow-md transition flex flex-col justify-between">
+                <div>
+                    <div class="w-12 h-12 bg-red-100 text-red-600 rounded-xl flex items-center justify-center text-xl mb-4 font-bold">
+                        <i class="fa-solid fa-shield-halved"></i>
+                    </div>
+                    <h4 class="text-lg font-bold text-iteraBlue mb-2">Kekerasan & Keselamatan</h4>
+                    <p class="text-sm text-slate-600 mb-4">Pelaporan kekerasan fisik, verbal, psikologis, pelecehan seksual, intimidasi, perundungan, dan diskriminasi.</p>
+                </div>
+                <a href="form.html?cat=kekerasan" class="text-red-600 text-sm font-semibold flex items-center gap-1 hover:underline">
+                    Laporkan Kasus <i class="fa-solid fa-arrow-right text-xs"></i>
+                </a>
+            </div>
+
+            <!-- Category 2 -->
+            <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-200 hover:shadow-md transition flex flex-col justify-between">
+                <div>
+                    <div class="w-12 h-12 bg-blue-100 text-blue-700 rounded-xl flex items-center justify-center text-xl mb-4 font-bold">
+                        <i class="fa-solid fa-graduation-cap"></i>
+                    </div>
+                    <h4 class="text-lg font-bold text-iteraBlue mb-2">Keluhan Akademik</h4>
+                    <p class="text-sm text-slate-600 mb-4">Masalah dosen, praktikum, perwalian, transparansi nilai, pungutan tidak transparan, dan ketidakadilan kebijakan.</p>
+                </div>
+                <a href="form.html?cat=akademik" class="text-blue-700 text-sm font-semibold flex items-center gap-1 hover:underline">
+                    Laporkan Akademik <i class="fa-solid fa-arrow-right text-xs"></i>
+                </a>
+            </div>
+
+            <!-- Category 3 -->
+            <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-200 hover:shadow-md transition flex flex-col justify-between">
+                <div>
+                    <div class="w-12 h-12 bg-amber-100 text-amber-700 rounded-xl flex items-center justify-center text-xl mb-4 font-bold">
+                        <i class="fa-solid fa-building-columns"></i>
+                    </div>
+                    <h4 class="text-lg font-bold text-iteraBlue mb-2">Kampus & Kemahasiswaan</h4>
+                    <p class="text-sm text-slate-600 mb-4">Fasilitas kampus, pelayanan administrasi, organisasi mahasiswa, dan kebijakan yang berdampak pada mahasiswa.</p>
+                </div>
+                <a href="form.html?cat=kampus" class="text-amber-700 text-sm font-semibold flex items-center gap-1 hover:underline">
+                    Laporkan Fasilitas <i class="fa-solid fa-arrow-right text-xs"></i>
+                </a>
+            </div>
+
+            <!-- Category 4 -->
+            <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-200 hover:shadow-md transition flex flex-col justify-between">
+                <div>
+                    <div class="w-12 h-12 bg-emerald-100 text-emerald-700 rounded-xl flex items-center justify-center text-xl mb-4 font-bold">
+                        <i class="fa-solid fa-lightbulb"></i>
+                    </div>
+                    <h4 class="text-lg font-bold text-iteraBlue mb-2">Aspirasi & Saran</h4>
+                    <p class="text-sm text-slate-600 mb-4">Usulan perbaikan kebijakan, kritik konstruktif, ide program, serta peningkatan kesejahteraan mahasiswa ITERA.</p>
+                </div>
+                <a href="form.html?cat=aspirasi" class="text-emerald-700 text-sm font-semibold flex items-center gap-1 hover:underline">
+                    Sampaikan Aspirasi <i class="fa-solid fa-arrow-right text-xs"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Workflow Section -->
+    <section class="bg-white py-16 px-4 border-y border-slate-200">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-12 space-y-2">
+                <h3 class="text-xs uppercase tracking-widest font-bold text-blue-700">Alur Penanganan</h3>
+                <h2 class="text-2xl sm:text-4xl font-extrabold text-iteraBlue">Bagaimana Laporan Anda Ditangani?</h2>
+                <p class="text-slate-600 max-w-2xl mx-auto">Prosedur transparan, profesional, dan bertanggung jawab dari awal pengiriman hingga tuntas.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-5 gap-6">
+                <!-- Step 1 -->
+                <div class="bg-slate-50 p-6 rounded-2xl border border-slate-200 text-center relative">
+                    <div class="w-10 h-10 bg-iteraBlue text-white rounded-full flex items-center justify-center font-bold mx-auto mb-4 text-sm">1</div>
+                    <h4 class="font-bold text-iteraBlue mb-2">Pengiriman Laporan</h4>
+                    <p class="text-xs text-slate-600">Pelapor mengisi formulir dan mendapatkan nomor tiket serta kode rahasia unik.</p>
+                </div>
+                <!-- Step 2 -->
+                <div class="bg-slate-50 p-6 rounded-2xl border border-slate-200 text-center relative">
+                    <div class="w-10 h-10 bg-iteraBlue text-white rounded-full flex items-center justify-center font-bold mx-auto mb-4 text-sm">2</div>
+                    <h4 class="font-bold text-iteraBlue mb-2">Verifikasi & Penilaian</h4>
+                    <p class="text-xs text-slate-600">Tim Advokesma memverifikasi validitas, tingkat urgensi, dan keamanan data.</p>
+                </div>
+                <!-- Step 3 -->
+                <div class="bg-slate-50 p-6 rounded-2xl border border-slate-200 text-center relative">
+                    <div class="w-10 h-10 bg-iteraBlue text-white rounded-full flex items-center justify-center font-bold mx-auto mb-4 text-sm">3</div>
+                    <h4 class="font-bold text-iteraBlue mb-2">Komunikasi & Pendampingan</h4>
+                    <p class="text-xs text-slate-600">Petugas berkoordinasi dengan pelapor dan memberikan pendampingan yang dibutuhkan.</p>
+                </div>
+                <!-- Step 4 -->
+                <div class="bg-slate-50 p-6 rounded-2xl border border-slate-200 text-center relative">
+                    <div class="w-10 h-10 bg-iteraBlue text-white rounded-full flex items-center justify-center font-bold mx-auto mb-4 text-sm">4</div>
+                    <h4 class="font-bold text-iteraBlue mb-2">Tindak Lanjut & Mediasi</h4>
+                    <p class="text-xs text-slate-600">Penyelesaian masalah melalui advokasi, mediasi, atau penerusan ke pihak berwenang.</p>
+                </div>
+                <!-- Step 5 -->
+                <div class="bg-slate-50 p-6 rounded-2xl border border-slate-200 text-center relative">
+                    <div class="w-10 h-10 bg-iteraBlue text-white rounded-full flex items-center justify-center font-bold mx-auto mb-4 text-sm">5</div>
+                    <h4 class="font-bold text-iteraBlue mb-2">Selesai & Evaluasi</h4>
+                    <p class="text-xs text-slate-600">Laporan ditutup dengan rekapitulasi dan pemantauan berkala untuk pencegahan.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Preview Section -->
+    <section class="py-16 px-4 max-w-4xl mx-auto">
+        <div class="text-center mb-12 space-y-2">
+            <h3 class="text-xs uppercase tracking-widest font-bold text-blue-700">Pertanyaan Umum</h3>
+            <h2 class="text-2xl sm:text-4xl font-extrabold text-iteraBlue">Yang Sering Ditanyakan</h2>
+        </div>
+
+        <div class="space-y-4">
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
+                <h4 class="font-bold text-iteraBlue mb-2 flex items-center gap-2">
+                    <i class="fa-solid fa-circle-question text-iteraGold"></i> Apakah identitas saya benar-benar aman dan dirahasiakan?
+                </h4>
+                <p class="text-sm text-slate-600 leading-relaxed">
+                    Ya. Kami menerapkan perlindungan data privasi yang ketat. Anda memiliki opsi untuk menggunakan identitas asli, nama samaran (pseudonym), atau laporan anonim. Khusus kasus kekerasan dan pelecehan, akses dibatasi secara sangat ketat hanya untuk petugas berwenang (Superadmin).
+                </p>
+            </div>
+
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
+                <h4 class="font-bold text-iteraBlue mb-2 flex items-center gap-2">
+                    <i class="fa-solid fa-circle-question text-iteraGold"></i> Apakah bukti awal wajib dilampirkan untuk membuat pengaduan?
+                </h4>
+                <p class="text-sm text-slate-600 leading-relaxed">
+                    Tidak. Bukti (foto, dokumen, tangkapan layar) bersifat opsional dan tidak diwajibkan sebagai syarat awal pelaporan. Keselamatan dan kenyamanan Anda adalah prioritas utama kami.
+                </p>
+            </div>
+
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
+                <h4 class="font-bold text-iteraBlue mb-2 flex items-center gap-2">
+                    <i class="fa-solid fa-circle-question text-iteraGold"></i> Bagaimana cara melacak status laporan saya?
+                </h4>
+                <p class="text-sm text-slate-600 leading-relaxed">
+                    Setelah mengirim laporan, Anda akan mendapatkan <strong>Nomor Tiket</strong> unik dan <strong>Kode Rahasia</strong>. Anda dapat memasukkannya di halaman <a href="tracking.html" class="text-blue-600 underline font-semibold">Lacak Laporan</a> tanpa perlu membuat akun beridentitas asli.
+                </p>
+            </div>
+        </div>
+
+        <div class="text-center mt-8">
+            <a href="faq.html" class="inline-flex items-center gap-2 bg-iteraBlue text-white font-semibold px-6 py-3 rounded-xl hover:bg-blue-900 transition">
+                Lihat Semua FAQ & Kebijakan Privasi <i class="fa-solid fa-arrow-right"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-iteraDarkBlue text-white pt-12 pb-8 mt-auto border-t border-blue-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+            <div class="space-y-4">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 bg-white rounded-full flex items-center justify-center text-iteraBlue font-black text-lg">
+                        <i class="fa-solid fa-scale-balanced"></i>
+                    </div>
+                    <div>
+                        <span class="text-xs text-iteraGold font-bold uppercase">KM ITERA</span>
+                        <h4 class="font-bold text-sm">Advokesma</h4>
+                    </div>
+                </div>
+                <p class="text-xs text-slate-400 leading-relaxed">
+                    Pusat Pengaduan dan Aspirasi Mahasiswa Institut Teknologi Sumatera. Wadah resmi perjuangan hak, kesejahteraan, dan keamanan mahasiswa.
+                </p>
+            </div>
+
+            <div>
+                <h4 class="font-bold text-iteraGold text-sm uppercase tracking-wider mb-4">Navigasi Utama</h4>
+                <ul class="space-y-2 text-xs text-slate-300">
+                    <li><a href="index.html" class="hover:text-iteraGold">Beranda</a></li>
+                    <li><a href="form.html" class="hover:text-iteraGold">Buat Pengaduan / Aspirasi</a></li>
+                    <li><a href="tracking.html" class="hover:text-iteraGold">Lacak Status Laporan</a></li>
+                    <li><a href="guide.html" class="hover:text-iteraGold">Panduan & Alur Penanganan</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="font-bold text-iteraGold text-sm uppercase tracking-wider mb-4">Informasi & Kebijakan</h4>
+                <ul class="space-y-2 text-xs text-slate-300">
+                    <li><a href="about.html" class="hover:text-iteraGold">Tentang Advokesma KM ITERA</a></li>
+                    <li><a href="faq.html" class="hover:text-iteraGold">FAQ & Pertanyaan Umum</a></li>
+                    <li><a href="faq.html#privacy" class="hover:text-iteraGold">Kebijakan Privasi & Kerahasiaan</a></li>
+                    <li><a href="faq.html#emergency" class="hover:text-iteraGold">Kontak & Rujukan Darurat</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="font-bold text-iteraGold text-sm uppercase tracking-wider mb-4">Sekretariat</h4>
+                <p class="text-xs text-slate-300 leading-relaxed mb-3">
+                    Gedung Student Center KM ITERA, Jl. Terusan Ryacudu, Way Huwi, Jati Agung, Lampung Selatan, Lampung 35365.
+                </p>
+                <p class="text-xs text-slate-300">
+                    Email: <a href="mailto:advokesma@km.itera.ac.id" class="text-iteraGold underline">advokesma@km.itera.ac.id</a>
+                </p>
+            </div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 border-t border-blue-900/50 text-center text-xs text-slate-400">
+            <p class="mb-1 font-semibold text-iteraGold text-sm">Mentri Advokesma KM ITERA: Andro Gustin Ginting</p>
+            <p>&copy; 2026 Kementerian Advokasi dan Kesejahteraan Mahasiswa (Advokesma) KM ITERA. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+    </script>
+</body>
+</html>
