@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Admin — Advokesma KM ITERA</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        iteraBlue: '#0B2545',
+                        iteraDarkBlue: '#06182E',
+                        iteraGold: '#D4AF37',
+                        iteraLightGold: '#F4D03F',
+                        iteraBg: '#F8FAFC'
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+    </style>
+</head>
+<body class="bg-iteraBg text-slate-800 antialiased flex flex-col min-h-screen">
+
+    <!-- Top Admin Header -->
+    <header class="bg-iteraBlue text-white shadow-md sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div class="w-12 h-12 bg-white rounded-full flex items-center justify-center text-iteraBlue font-black text-xl shadow">
+                    <i class="fa-solid fa-gauge-high text-iteraBlue"></i>
+                </div>
+                <div>
+                    <span class="text-xs font-semibold tracking-wider text-iteraGold uppercase block">Admin Dashboard</span>
+                    <h1 class="text-base sm:text-lg font-bold tracking-tight">Advokesma KM ITERA</h1>
+                </div>
+            </div>
+
+            <div class="flex items-center space-x-4">
+                <div class="text-right hidden sm:block">
+                    <span id="admin-user-name" class="text-sm font-bold text-iteraGold block">Admin</span>
+                    <span class="text-xs text-slate-300">Petugas Berwenang</span>
+                </div>
+                <button id="logout-btn" class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-xl text-sm font-bold transition shadow flex items-center gap-2">
+                    <i class="fa-solid fa-right-from-bracket"></i> Keluar
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Admin Container -->
+    <main class="py-10 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full flex-grow space-y-8">
+        
+        <!-- Statistics Cards -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div class="bg-white p-6 rounded-3xl shadow-sm border border-slate-200 flex items-center justify-between">
+                <div>
+                    <span class="text-xs font-bold text-slate-400 uppercase tracking-wider block mb-1">Total Laporan</span>
+                    <h3 id="stat-total" class="text-3xl font-black text-iteraBlue">0</h3>
+                </div>
+                <div class="w-14 h-14 bg-blue-100 text-iteraBlue rounded-2xl flex items-center justify-center text-2xl font-bold">
+                    <i class="fa-solid fa-folder-open"></i>
+                </div>
+            </div>
+
+            <div class="bg-white p-6 rounded-3xl shadow-sm border border-slate-200 flex items-center justify-between">
+                <div>
+                    <span class="text-xs font-bold text-slate-400 uppercase tracking-wider block mb-1">Dalam Verifikasi</span>
+                    <h3 id="stat-verif" class="text-3xl font-black text-amber-600">0</h3>
+                </div>
+                <div class="w-14 h-14 bg-amber-100 text-amber-600 rounded-2xl flex items-center justify-center text-2xl font-bold">
+                    <i class="fa-solid fa-hourglass-half"></i>
+                </div>
+            </div>
+
+            <div class="bg-white p-6 rounded-3xl shadow-sm border border-slate-200 flex items-center justify-between">
+                <div>
+                    <span class="text-xs font-bold text-slate-400 uppercase tracking-wider block mb-1">Dalam Tindak Lanjut</span>
+                    <h3 id="stat-follow" class="text-3xl font-black text-blue-600">0</h3>
+                </div>
+                <div class="w-14 h-14 bg-blue-100 text-blue-600 rounded-2xl flex items-center justify-center text-2xl font-bold">
+                    <i class="fa-solid fa-arrows-spin"></i>
+                </div>
+            </div>
+
+            <div class="bg-white p-6 rounded-3xl shadow-sm border border-slate-200 flex items-center justify-between">
+                <div>
+                    <span class="text-xs font-bold text-slate-400 uppercase tracking-wider block mb-1">Selesai</span>
+                    <h3 id="stat-done" class="text-3xl font-black text-emerald-600">0</h3>
+                </div>
+                <div class="w-14 h-14 bg-emerald-100 text-emerald-600 rounded-2xl flex items-center justify-center text-2xl font-bold">
+                    <i class="fa-solid fa-circle-check"></i>
+                </div>
+            </div>
+        </div>
+
+        <!-- Filters & Search Toolbar -->
+        <div class="bg-white rounded-3xl shadow-sm border border-slate-200 p-6 space-y-4">
+            <div class="flex flex-col lg:flex-row justify-between items-center gap-4">
+                <h3 class="text-xl font-extrabold text-iteraBlue">Daftar Pengaduan & Aspirasi Mahasiswa</h3>
+                <div class="flex items-center gap-2">
+                    <button onclick="exportCSV()" class="bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2.5 rounded-xl text-xs font-bold transition flex items-center gap-2 shadow">
+                        <i class="fa-solid fa-file-excel"></i> Ekspor CSV
+                    </button>
+                    <button onclick="window.print()" class="bg-slate-700 hover:bg-slate-800 text-white px-4 py-2.5 rounded-xl text-xs font-bold transition flex items-center gap-2 shadow">
+                        <i class="fa-solid fa-print"></i> Cetak / PDF
+                    </button>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 pt-2">
+                <div>
+                    <label class="block text-xs font-bold text-slate-500 mb-1 uppercase">Filter Kategori</label>
+                    <select id="filter-cat" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-iteraBlue">
+                        <option value="">Semua Kategori</option>
+                        <option value="Kekerasan dan Keselamatan">Kekerasan dan Keselamatan</option>
+                        <option value="Keluhan Akademik">Keluhan Akademik</option>
+                        <option value="Keluhan Kampus dan Kemahasiswaan">Keluhan Kampus dan Kemahasiswaan</option>
+                        <option value="Aspirasi dan Saran">Aspirasi dan Saran</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-500 mb-1 uppercase">Filter Status</label>
+                    <select id="filter-status" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-iteraBlue">
+                        <option value="">Semua Status</option>
+                        <option value="Diterima">Diterima</option>
+                        <option value="Dalam Verifikasi">Dalam Verifikasi</option>
+                        <option value="Membutuhkan Informasi Tambahan">Membutuhkan Informasi Tambahan</option>
+                        <option value="Dalam Tindak Lanjut">Dalam Tindak Lanjut</option>
+                        <option value="Selesai">Selesai</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-500 mb-1 uppercase">Cari Tiket / Nama / Isi</label>
+                    <div class="relative">
+                        <span class="absolute inset-y-0 left-0 pl-3 flex items-center text-slate-400">
+                            <i class="fa-solid fa-search"></i>
+                        </span>
+                        <input type="text" id="search-input" placeholder="Ketik pencarian..." class="w-full bg-slate-50 border border-slate-300 rounded-xl pl-10 pr-4 py-2.5 text-sm focus:outline-none focus:border-iteraBlue">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Reports Table -->
+        <div class="bg-white rounded-3xl shadow-sm border border-slate-200 overflow-hidden">
+            <div class="overflow-x-auto">
+                <table class="w-full text-left border-collapse">
+                    <thead>
+                        <tr class="bg-slate-100 text-slate-600 text-xs font-bold uppercase tracking-wider border-b border-slate-200">
+                            <th class="py-4 px-6">Tiket</th>
+                            <th class="py-4 px-6">Pelapor</th>
+                            <th class="py-4 px-6">Kategori</th>
+                            <th class="py-4 px-6">Status</th>
+                            <th class="py-4 px-6">Petugas</th>
+                            <th class="py-4 px-6">Tanggal</th>
+                            <th class="py-4 px-6 text-center">Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody id="reports-tbody" class="divide-y divide-slate-200 text-sm">
+                        <!-- Dynamic rows -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Report Detail Modal -->
+    <div id="detail-modal" class="hidden fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4 overflow-y-auto">
+        <div class="bg-white rounded-3xl max-w-3xl w-full p-6 sm:p-8 space-y-6 shadow-2xl max-h-[90vh] overflow-y-auto">
+            <div class="flex justify-between items-center border-b border-slate-200 pb-4">
+                <div>
+                    <span id="modal-ticket" class="text-xs font-mono font-bold text-iteraGold bg-iteraBlue px-3 py-1 rounded-full"></span>
+                    <h3 class="text-xl font-extrabold text-iteraBlue mt-2">Detail & Tindak Lanjut Laporan</h3>
+                </div>
+                <button onclick="closeModal()" class="text-slate-400 hover:text-slate-700 text-xl font-bold p-2">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <div class="space-y-6 text-sm">
+                <!-- Reporter Info -->
+                <div class="bg-slate-50 p-4 rounded-2xl grid grid-cols-1 sm:grid-cols-2 gap-4 border border-slate-200">
+                    <div>
+                        <span class="text-xs font-bold text-slate-400 block">Identitas Pelapor</span>
+                        <p id="modal-reporter" class="font-bold text-iteraBlue"></p>
+                    </div>
+                    <div>
+                        <span class="text-xs font-bold text-slate-400 block">Kontak</span>
+                        <p id="modal-contact" class="font-medium text-slate-700"></p>
+                    </div>
+                    <div>
+                        <span class="text-xs font-bold text-slate-400 block">Kategori</span>
+                        <p id="modal-category" class="font-bold text-iteraBlue"></p>
+                    </div>
+                    <div>
+                        <span class="text-xs font-bold text-slate-400 block">Fakultas / Prodi</span>
+                        <p id="modal-prodi" class="font-medium text-slate-700"></p>
+                    </div>
+                </div>
+
+                <!-- Chronology -->
+                <div>
+                    <span class="text-xs font-bold text-slate-400 block mb-1">Kronologi Kejadian / Aspirasi</span>
+                    <div id="modal-chronology" class="bg-slate-50 p-4 rounded-2xl text-slate-700 leading-relaxed border border-slate-200 whitespace-pre-line"></div>
+                </div>
+
+                <!-- Attachment -->
+                <div id="modal-att-container" class="hidden">
+                    <span class="text-xs font-bold text-slate-400 block mb-1">Lampiran Berkas</span>
+                    <a id="modal-attachment" href="#" target="_blank" class="inline-flex items-center gap-2 bg-blue-50 text-blue-800 px-4 py-2 rounded-xl font-bold text-xs border border-blue-200 hover:bg-blue-100 transition">
+                        <i class="fa-solid fa-paperclip"></i> Lihat Berkas Bukti
+                    </a>
+                </div>
+
+                <!-- Update Form -->
+                <form id="update-form" class="space-y-4 pt-4 border-t border-slate-200">
+                    <input type="hidden" id="modal-report-id">
+                    <h4 class="font-bold text-iteraBlue flex items-center gap-2">
+                        <i class="fa-solid fa-pen-to-square text-iteraGold"></i> Perbarui Status & Tanggapan Petugas
+                    </h4>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-bold text-slate-600 mb-1 uppercase">Status Laporan</label>
+                            <select id="update-status" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-iteraBlue">
+                                <option value="Diterima">Diterima</option>
+                                <option value="Dalam Verifikasi">Dalam Verifikasi</option>
+                                <option value="Membutuhkan Informasi Tambahan">Membutuhkan Informasi Tambahan</option>
+                                <option value="Dalam Tindak Lanjut">Dalam Tindak Lanjut</option>
+                                <option value="Selesai">Selesai</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-slate-600 mb-1 uppercase">Petugas Penanggung Jawab</label>
+                            <input type="text" id="update-officer" placeholder="Nama Petugas" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-iteraBlue">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold text-slate-600 mb-1 uppercase">Pesan Terbaru untuk Pelapor (Dapat Dilihat di Halaman Lacak)</label>
+                        <textarea id="update-message" rows="3" class="w-full bg-slate-50 border border-slate-300 rounded-xl p-3 text-sm focus:outline-none focus:border-iteraBlue" placeholder="Tulis pesan atau perkembangan penanganan..."></textarea>
+                    </div>
+
+                    <button type="submit" class="w-full bg-iteraBlue text-white font-bold py-3 rounded-xl hover:bg-blue-900 transition text-sm">
+                        Simpan Perubahan Laporan
+                    </button>
+                </form>
+
+                <!-- Internal Notes Section -->
+                <div class="pt-4 border-t border-slate-200 space-y-4">
+                    <h4 class="font-bold text-iteraBlue flex items-center gap-2">
+                        <i class="fa-solid fa-note-sticky text-iteraGold"></i> Catatan Internal Petugas (Rahasia / Tidak Ditampilkan ke Pelapor)
+                    </h4>
+                    
+                    <div id="notes-list" class="space-y-3 max-h-40 overflow-y-auto">
+                        <!-- Dynamic notes -->
+                    </div>
+
+                    <form id="note-form" class="flex gap-2">
+                        <input type="text" id="new-note" placeholder="Tulis catatan internal..." required class="flex-grow bg-slate-50 border border-slate-300 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-iteraBlue">
+                        <button type="submit" class="bg-iteraGold text-iteraBlue font-bold px-6 py-2.5 rounded-xl hover:bg-yellow-400 transition text-sm">
+                            Tambah Catatan
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-iteraDarkBlue text-white pt-12 pb-8 mt-auto border-t border-blue-900">
+        <div class="max-w-7xl mx-auto px-4 text-center text-xs text-slate-400">
+            &copy; 2026 Kementerian Advokasi dan Kesejahteraan Mahasiswa (Advokesma) KM ITERA. All rights reserved.
+        </div>
+    </footer>
+
+    <script>
+        let allReports = [];
+
+        // Check authentication on load
+        async function checkAuth() {
+            try {
+                const res = await fetch('/api/admin/check');
+                const data = await res.json();
+                if (!data.loggedIn) {
+                    window.location.href = 'admin-login.html';
+                } else {
+                    document.getElementById('admin-user-name').textContent = data.user.username;
+                    loadDashboard();
+                }
+            } catch (err) {
+                window.location.href = 'admin-login.html';
+            }
+        }
+
+        // Logout
+        document.getElementById('logout-btn').addEventListener('click', async () => {
+            await fetch('/api/admin/logout', { method: 'POST' });
+            window.location.href = 'admin-login.html';
+        });
+
+        async function loadDashboard() {
+            const cat = document.getElementById('filter-cat').value;
+            const status = document.getElementById('filter-status').value;
+            const search = document.getElementById('search-input').value;
+
+            let url = `/api/admin/reports?`;
+            if (cat) url += `category=${encodeURIComponent(cat)}&`;
+            if (status) url += `status=${encodeURIComponent(status)}&`;
+            if (search) url += `search=${encodeURIComponent(search)}&`;
+
+            try {
+                const res = await fetch(url);
+                const data = await res.json();
+                if (data.success) {
+                    allReports = data.reports;
+                    renderTable(allReports);
+                }
+
+                // Stats
+                const statsRes = await fetch('/api/admin/stats');
+                const statsData = await statsRes.json();
+                if (statsData.success) {
+                    document.getElementById('stat-total').textContent = statsData.total;
+                    let verif = 0, follow = 0, done = 0;
+                    statsData.by_status.forEach(s => {
+                        if (s.status === 'Dalam Verifikasi' || s.status === 'Diterima' || s.status === 'Membutuhkan Informasi Tambahan') verif += s.count;
+                        if (s.status === 'Dalam Tindak Lanjut') follow += s.count;
+                        if (s.status === 'Selesai') done += s.count;
+                    });
+                    document.getElementById('stat-verif').textContent = verif;
+                    document.getElementById('stat-follow').textContent = follow;
+                    document.getElementById('stat-done').textContent = done;
+                }
+            } catch (err) {
+                console.error(err);
+            }
+        }
+
+        function renderTable(reports) {
+            const tbody = document.getElementById('reports-tbody');
+            tbody.innerHTML = '';
+
+            if (reports.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="7" class="text-center py-8 text-slate-400">Tidak ada laporan ditemukan.</td></tr>`;
+                return;
+            }
+
+            reports.forEach(r => {
+                let badgeClass = 'bg-slate-100 text-slate-800';
+                if (r.status === 'Selesai') badgeClass = 'bg-emerald-100 text-emerald-800';
+                else if (r.status === 'Dalam Tindak Lanjut') badgeClass = 'bg-blue-100 text-blue-800';
+                else if (r.status === 'Membutuhkan Informasi Tambahan') badgeClass = 'bg-amber-100 text-amber-800';
+
+                const tr = document.createElement('tr');
+                tr.className = 'hover:bg-slate-50 transition border-b border-slate-100';
+                tr.innerHTML = `
+                    <td class="py-4 px-6 font-mono font-bold text-iteraBlue">${r.ticket_number}</td>
+                    <td class="py-4 px-6 font-medium text-slate-800">${r.reporter_name}</td>
+                    <td class="py-4 px-6 text-slate-600">${r.category}</td>
+                    <td class="py-4 px-6"><span class="px-3 py-1 rounded-full text-xs font-bold ${badgeClass}">${r.status}</span></td>
+                    <td class="py-4 px-6 text-slate-600">${r.assigned_officer}</td>
+                    <td class="py-4 px-6 text-slate-500 text-xs">${new Date(r.created_at).toLocaleDateString('id-ID')}</td>
+                    <td class="py-4 px-6 text-center">
+                        <button onclick="openDetail(${r.id})" class="bg-iteraBlue text-white px-3.5 py-2 rounded-xl text-xs font-bold hover:bg-blue-900 transition shadow">
+                            <i class="fa-solid fa-eye"></i> Detail
+                        </button>
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        // Filters event listeners
+        document.getElementById('filter-cat').addEventListener('change', loadDashboard);
+        document.getElementById('filter-status').addEventListener('change', loadDashboard);
+        document.getElementById('search-input').addEventListener('input', loadDashboard);
+
+        // Open Detail Modal
+        async function openDetail(id) {
+            try {
+                const res = await fetch(`/api/admin/reports/${id}`);
+                const data = await res.json();
+                if (data.success) {
+                    const r = data.report;
+                    document.getElementById('modal-report-id').value = r.id;
+                    document.getElementById('modal-ticket').textContent = r.ticket_number;
+                    document.getElementById('modal-reporter').textContent = r.reporter_name + ` (${r.identity_type})`;
+                    document.getElementById('modal-contact').textContent = r.reporter_contact;
+                    document.getElementById('modal-category').textContent = r.category + ' — ' + (r.subcategory || '');
+                    document.getElementById('modal-prodi').textContent = r.faculty_prodi || '-';
+                    document.getElementById('modal-chronology').textContent = r.chronology;
+                    document.getElementById('update-status').value = r.status;
+                    document.getElementById('update-officer').value = r.assigned_officer;
+                    document.getElementById('update-message').value = r.admin_message;
+
+                    // Attachment
+                    const attContainer = document.getElementById('modal-att-container');
+                    const attLink = document.getElementById('modal-attachment');
+                    if (r.attachment_path) {
+                        attLink.href = r.attachment_path;
+                        attContainer.classList.remove('hidden');
+                    } else {
+                        attContainer.classList.add('hidden');
+                    }
+
+                    // Notes
+                    const notesList = document.getElementById('notes-list');
+                    notesList.innerHTML = '';
+                    if (data.internal_notes.length === 0) {
+                        notesList.innerHTML = `<p class="text-xs text-slate-400 italic">Belum ada catatan internal.</p>`;
+                    } else {
+                        data.internal_notes.forEach(n => {
+                            const ndiv = document.createElement('div');
+                            ndiv.className = 'bg-amber-50 p-3 rounded-xl border border-amber-200 text-xs space-y-1';
+                            ndiv.innerHTML = `
+                                <div class="flex justify-between font-bold text-amber-900">
+                                    <span>${n.officer_name}</span>
+                                    <span class="text-slate-400">${new Date(n.created_at).toLocaleString('id-ID')}</span>
+                                </div>
+                                <p class="text-slate-700">${n.note}</p>
+                            `;
+                            notesList.appendChild(ndiv);
+                        });
+                    }
+
+                    document.getElementById('detail-modal').classList.remove('hidden');
+                }
+            } catch (err) {
+                alert('Gagal memuat detail laporan.');
+            }
+        }
+
+        function closeModal() {
+            document.getElementById('detail-modal').classList.add('hidden');
+            loadDashboard();
+        }
+
+        // Update Report Form
+        document.getElementById('update-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const id = document.getElementById('modal-report-id').value;
+            const status = document.getElementById('update-status').value;
+            const assigned_officer = document.getElementById('update-officer').value;
+            const admin_message = document.getElementById('update-message').value;
+
+            try {
+                const res = await fetch(`/api/admin/reports/${id}`, {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ status, assigned_officer, admin_message })
+                });
+                const data = await res.json();
+                if (data.success) {
+                    alert('Laporan berhasil diperbarui!');
+                    closeModal();
+                } else {
+                    alert(data.error || 'Gagal memperbarui.');
+                }
+            } catch (err) {
+                alert('Terjadi kesalahan server.');
+            }
+        });
+
+        // Add Internal Note
+        document.getElementById('note-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const id = document.getElementById('modal-report-id').value;
+            const note = document.getElementById('new-note').value.trim();
+            if (!note) return;
+
+            try {
+                const res = await fetch(`/api/admin/reports/${id}/notes`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ note })
+                });
+                const data = await res.json();
+                if (data.success) {
+                    document.getElementById('new-note').value = '';
+                    openDetail(id); // Reload modal detail
+                }
+            } catch (err) {
+                alert('Gagal menambahkan catatan.');
+            }
+        });
+
+        // Export CSV
+        function exportCSV() {
+            let csv = 'Tiket,Nama Pelapor,Kategori,Subkategori,Status,Petugas,Tanggal\n';
+            allReports.forEach(r => {
+                csv += `"${r.ticket_number}","${r.reporter_name}","${r.category}","${r.subcategory || ''}","${r.status}","${r.assigned_officer}","${r.created_at}"\n`;
+            });
+            const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `rekap_laporan_advokesma_${new Date().toISOString().slice(0,10)}.csv`;
+            a.click();
+        }
+
+        checkAuth();
+    </script>
+</body>
+</html>

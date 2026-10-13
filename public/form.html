@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulir Pengaduan & Aspirasi — Advokesma KM ITERA</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        iteraBlue: '#0B2545',
+                        iteraDarkBlue: '#06182E',
+                        iteraGold: '#D4AF37',
+                        iteraLightGold: '#F4D03F',
+                        iteraBg: '#F8FAFC'
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+    </style>
+</head>
+<body class="bg-iteraBg text-slate-800 antialiased flex flex-col min-h-screen">
+
+    <!-- Top Emergency Bar -->
+    <div class="bg-red-600 text-white text-xs sm:text-sm py-2 px-4 text-center font-medium flex items-center justify-center gap-2">
+        <i class="fa-solid fa-triangle-exclamation"></i>
+        <span>Butuh pertolongan darurat segera? Hubungi Hotline Darurat Advokesma: <strong>0831-4218-8314</strong></span>
+    </div>
+
+    <!-- Navigation Bar -->
+    <header class="bg-iteraBlue text-white shadow-md sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <a href="index.html" class="w-12 h-12 bg-white rounded-full flex items-center justify-center text-iteraBlue font-black text-xl shadow">
+                    <i class="fa-solid fa-scale-balanced text-iteraBlue"></i>
+                </a>
+                <div>
+                    <span class="text-xs font-semibold tracking-wider text-iteraGold uppercase block">Advokesma KM ITERA</span>
+                    <h1 class="text-base sm:text-lg font-bold tracking-tight">Formulir Pengaduan & Aspirasi</h1>
+                </div>
+            </div>
+
+            <!-- Desktop Nav -->
+            <nav class="hidden md:flex items-center space-x-6 text-sm font-medium">
+                <a href="index.html" class="hover:text-iteraGold transition">Beranda</a>
+                <a href="form.html" class="text-iteraGold font-semibold hover:text-white transition">Buat Pengaduan</a>
+                <a href="tracking.html" class="hover:text-iteraGold transition">Lacak Laporan</a>
+                <a href="guide.html" class="hover:text-iteraGold transition">Panduan & Alur</a>
+                <a href="faq.html" class="hover:text-iteraGold transition">FAQ & Kontak</a>
+                <a href="admin-login.html" class="bg-iteraGold text-iteraBlue px-4 py-2 rounded-lg font-bold hover:bg-yellow-400 transition shadow">
+                    <i class="fa-solid fa-lock mr-1"></i> Admin Login
+                </a>
+            </nav>
+
+            <button id="menu-btn" class="md:hidden text-white focus:outline-none text-2xl">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+
+        <div id="mobile-menu" class="hidden md:hidden bg-iteraDarkBlue px-4 pt-2 pb-4 space-y-3 border-t border-blue-900">
+            <a href="index.html" class="block hover:text-iteraGold py-1">Beranda</a>
+            <a href="form.html" class="block text-iteraGold font-medium py-1">Buat Pengaduan</a>
+            <a href="tracking.html" class="block hover:text-iteraGold py-1">Lacak Laporan</a>
+            <a href="guide.html" class="block hover:text-iteraGold py-1">Panduan & Alur</a>
+            <a href="faq.html" class="block hover:text-iteraGold py-1">FAQ & Kontak</a>
+            <a href="admin-login.html" class="inline-block bg-iteraGold text-iteraBlue px-4 py-2 rounded-lg font-bold mt-2">
+                <i class="fa-solid fa-lock mr-1"></i> Admin Login
+            </a>
+        </div>
+    </header>
+
+    <!-- Form Header -->
+    <section class="bg-iteraBlue text-white py-12 px-4">
+        <div class="max-w-4xl mx-auto text-center space-y-3">
+            <h2 class="text-2xl sm:text-4xl font-extrabold">Formulir Layanan Pengaduan & Aspirasi</h2>
+            <p class="text-slate-300 text-sm sm:text-base max-w-2xl mx-auto">
+                Sampaikan laporan atau aspirasi Anda dengan aman. Kami berkomitmen menjaga kerahasiaan dan memberikan pendampingan yang berpihak pada korban dan keadilan.
+            </p>
+        </div>
+    </section>
+
+    <!-- Main Form Container -->
+    <main class="py-12 px-4 flex-grow">
+        <div class="max-w-3xl mx-auto bg-white rounded-3xl shadow-sm border border-slate-200 p-6 sm:p-10">
+            
+            <div id="alert-box" class="hidden mb-6 p-4 rounded-xl text-sm font-medium"></div>
+
+            <form id="complaint-form" class="space-y-8" enctype="multipart/form-data">
+
+                <!-- Step 1: Kategori & Subkategori -->
+                <div class="space-y-4 border-b border-slate-200 pb-8">
+                    <h3 class="text-lg font-bold text-iteraBlue flex items-center gap-2">
+                        <span class="w-7 h-7 bg-iteraBlue text-white rounded-full flex items-center justify-center text-xs">1</span>
+                        Kategori Laporan / Aspirasi
+                    </h3>
+                    
+                    <div>
+                        <label class="block text-sm font-bold text-slate-700 mb-2">Pilih Kategori Utama <span class="text-red-500">*</span></label>
+                        <select id="category" name="category" required class="w-full bg-slate-50 border border-slate-300 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-iteraBlue">
+                            <option value="">-- Pilih Kategori --</option>
+                            <option value="Kekerasan dan Keselamatan">A. Kekerasan dan Keselamatan</option>
+                            <option value="Keluhan Akademik">B. Keluhan Akademik</option>
+                            <option value="Keluhan Kampus dan Kemahasiswaan">C. Keluhan Kampus dan Kemahasiswaan</option>
+                            <option value="Aspirasi dan Saran">D. Aspirasi dan Saran</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-bold text-slate-700 mb-2">Pilih Subkategori <span class="text-red-500">*</span></label>
+                        <select id="subcategory" name="subcategory" required class="w-full bg-slate-50 border border-slate-300 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-iteraBlue">
+                            <option value="">-- Pilih Kategori Utama Terlebih Dahulu --</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Step 2: Identitas & Privasi -->
+                <div class="space-y-4 border-b border-slate-200 pb-8">
+                    <h3 class="text-lg font-bold text-iteraBlue flex items-center gap-2">
+                        <span class="w-7 h-7 bg-iteraBlue text-white rounded-full flex items-center justify-center text-xs">2</span>
+                        Pilihan Identitas & Kontak (Opsional / Fleksibel)
+                    </h3>
+                    <p class="text-xs text-slate-500 leading-relaxed">
+                        Anda dapat memilih mengirim laporan dengan identitas asli, menggunakan nama samaran (pseudonym), atau anonim (tanpa identitas sama sekali). Laporan kekerasan mendapatkan proteksi ekstra.
+                    </p>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2">
+                        <label class="flex items-center p-4 border border-slate-300 rounded-xl cursor-pointer hover:bg-slate-50 transition">
+                            <input type="radio" name="identity_type" value="real" class="text-iteraBlue focus:ring-iteraBlue" checked>
+                            <span class="ml-3 text-sm font-semibold text-slate-700">Identitas Asli</span>
+                        </label>
+                        <label class="flex items-center p-4 border border-slate-300 rounded-xl cursor-pointer hover:bg-slate-50 transition">
+                            <input type="radio" name="identity_type" value="pseudonym" class="text-iteraBlue focus:ring-iteraBlue">
+                            <span class="ml-3 text-sm font-semibold text-slate-700">Nama Samaran</span>
+                        </label>
+                        <label class="flex items-center p-4 border border-slate-300 rounded-xl cursor-pointer hover:bg-slate-50 transition">
+                            <input type="radio" name="identity_type" value="anonymous" class="text-iteraBlue focus:ring-iteraBlue">
+                            <span class="ml-3 text-sm font-semibold text-slate-700">Sepenuhnya Anonim</span>
+                        </label>
+                    </div>
+
+                    <div id="identity-fields" class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+                        <div>
+                            <label class="block text-sm font-bold text-slate-700 mb-1">Nama / Nama Samaran</label>
+                            <input type="text" id="reporter_name" name="reporter_name" placeholder="cth: Budi Santoso / Pejuang Keadilan" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-iteraBlue">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-bold text-slate-700 mb-1">Kontak (Email / WhatsApp)</label>
+                            <input type="text" id="reporter_contact" name="reporter_contact" placeholder="cth: 08123456789 / email@student.itera.ac.id" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-iteraBlue">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 3: Detail Kejadian / Aspirasi -->
+                <div class="space-y-4 border-b border-slate-200 pb-8">
+                    <h3 class="text-lg font-bold text-iteraBlue flex items-center gap-2">
+                        <span class="w-7 h-7 bg-iteraBlue text-white rounded-full flex items-center justify-center text-xs">3</span>
+                        Detail Kronologi & Permasalahan
+                    </h3>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm font-bold text-slate-700 mb-1">Fakultas / Program Studi (Opsional)</label>
+                            <input type="text" name="faculty_prodi" placeholder="cth: Sains / Teknik Informatika 2023" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-iteraBlue">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-bold text-slate-700 mb-1">Waktu & Lokasi Kejadian (Jika Relevan)</label>
+                            <input type="text" name="incident_time_location" placeholder="cth: 12 Oktober 2026, Gedung Kuliah Bersama" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-iteraBlue">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-bold text-slate-700 mb-1">Pihak atau Unit Terkait (Jika Diketahui)</label>
+                        <input type="text" name="related_party" placeholder="cth: Dosen pengampu / Unit fasilitas / Organisasi tertentu" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-iteraBlue">
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-bold text-slate-700 mb-1">Kronologi Kejadian / Isi Aspirasi <span class="text-red-500">*</span></label>
+                        <textarea name="chronology" rows="5" required placeholder="Ceritakan secara kronologis tanpa harus memaksakan detail sensitif yang tidak ingin Anda ungkapkan..." class="w-full bg-slate-50 border border-slate-300 rounded-xl p-4 text-sm focus:outline-none focus:border-iteraBlue"></textarea>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-bold text-slate-700 mb-1">Dampak yang Dialami / Permasalahan yang Dihadapi</label>
+                        <textarea name="impact" rows="3" placeholder="Jelaskan dampak yang Anda rasakan..." class="w-full bg-slate-50 border border-slate-300 rounded-xl p-4 text-sm focus:outline-none focus:border-iteraBlue"></textarea>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-bold text-slate-700 mb-1">Bentuk Bantuan yang Diharapkan</label>
+                        <select name="expected_assistance" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-iteraBlue">
+                            <option value="Konsultasi dan pendengaran">Konsultasi dan Pendengaran</option>
+                            <option value="Pendampingan advokasi">Pendampingan Advokasi</option>
+                            <option value="Mediasi (jika aman dan disetujui)">Mediasi (Jika aman dan disetujui)</option>
+                            <option value="Penerusan laporan ke pihak berwenang kampus">Penerusan Laporan ke Pihak Berwenang Kampus</option>
+                            <option value="Penyaluran aspirasi / saran perbaikan">Penyaluran Aspirasi / Saran Perbaikan</option>
+                            <option value="Lainnya">Lainnya</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Step 4: Lampiran & Persetujuan -->
+                <div class="space-y-4 pb-4">
+                    <h3 class="text-lg font-bold text-iteraBlue flex items-center gap-2">
+                        <span class="w-7 h-7 bg-iteraBlue text-white rounded-full flex items-center justify-center text-xs">4</span>
+                        Lampiran Bukti & Persetujuan
+                    </h3>
+                    <p class="text-xs text-slate-500">
+                        Lampiran bukti (foto, tangkapan layar, dokumen) bersifat <strong>opsional</strong> dan tidak wajib sebagai syarat awal pelaporan.
+                    </p>
+
+                    <div>
+                        <label class="block text-sm font-bold text-slate-700 mb-1">Unggah Berkas / Bukti (Maks 10MB: JPG, PNG, PDF, DOC)</label>
+                        <input type="file" name="attachment" accept=".jpg,.jpeg,.png,.pdf,.doc,.docx" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-4 py-3 text-sm focus:outline-none file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-iteraBlue file:text-white hover:file:bg-blue-900">
+                    </div>
+
+                    <div class="pt-4 border-t border-slate-200 space-y-3">
+                        <label class="flex items-start gap-3 cursor-pointer">
+                            <input type="checkbox" id="consent" name="consent" required class="mt-1 text-iteraBlue focus:ring-iteraBlue rounded">
+                            <span class="text-xs text-slate-600 leading-relaxed">
+                                <strong class="text-iteraBlue">Persetujuan Pemrosesan Data:</strong> Saya menyatakan bahwa informasi yang saya sampaikan adalah benar sesuai dengan pemahaman saya. Saya menyetujui pemrosesan data pengaduan ini oleh Tim Advokesma KM ITERA dengan jaminan perlindungan privasi dan kerahasiaan. <span class="text-red-500">*</span>
+                            </span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="pt-4">
+                    <button type="submit" id="submit-btn" class="w-full bg-iteraGold text-iteraBlue font-extrabold py-4 rounded-xl shadow-lg hover:bg-yellow-400 transition text-lg flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-paper-plane"></i> Kirim Laporan / Aspirasi
+                    </button>
+                </div>
+
+            </form>
+        </div>
+    </main>
+
+    <!-- Success Modal -->
+    <div id="success-modal" class="hidden fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-lg w-full p-8 space-y-6 text-center shadow-2xl">
+            <div class="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center text-3xl mx-auto font-bold">
+                <i class="fa-solid fa-check"></i>
+            </div>
+            <div class="space-y-2">
+                <h3 class="text-2xl font-extrabold text-iteraBlue">Laporan Berhasil Dikirim!</h3>
+                <p class="text-sm text-slate-600">Simpan informasi di bawah ini dengan aman untuk melacak status laporan Anda.</p>
+            </div>
+
+            <div class="bg-slate-50 p-6 rounded-2xl border border-slate-200 text-left space-y-3">
+                <div class="flex justify-between items-center border-b border-slate-200 pb-2">
+                    <span class="text-xs text-slate-500 font-semibold">Nomor Tiket:</span>
+                    <span id="res-ticket" class="text-base font-black text-iteraBlue"></span>
+                </div>
+                <div class="flex justify-between items-center">
+                    <span class="text-xs text-slate-500 font-semibold">Kode Rahasia:</span>
+                    <span id="res-code" class="text-base font-black text-red-600 font-mono"></span>
+                </div>
+            </div>
+
+            <p class="text-xs text-amber-600 font-medium bg-amber-50 p-3 rounded-xl border border-amber-200">
+                <i class="fa-solid fa-triangle-exclamation mr-1"></i> Jangan bagikan kode rahasia ini kepada siapapun kecuali petugas Advokesma KM ITERA.
+            </p>
+
+            <div class="flex gap-4 pt-2">
+                <a id="track-link" href="#" class="flex-1 bg-iteraBlue text-white font-bold py-3 rounded-xl hover:bg-blue-900 transition text-center">
+                    Lacak Laporan
+                </a>
+                <a href="index.html" class="flex-1 bg-slate-200 text-slate-700 font-bold py-3 rounded-xl hover:bg-slate-300 transition text-center">
+                    Kembali ke Beranda
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-iteraDarkBlue text-white pt-12 pb-8 mt-auto border-t border-blue-900">
+        <div class="max-w-7xl mx-auto px-4 text-center text-xs text-slate-400">
+            <p class="mb-1 font-semibold text-iteraGold text-sm">Mentri Advokesma KM ITERA: Andro Gustin Ginting</p>
+            <p>&copy; 2026 Kementerian Advokasi dan Kesejahteraan Mahasiswa (Advokesma) KM ITERA. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Subcategories mapping
+        const subcategoriesData = {
+            "Kekerasan dan Keselamatan": [
+                "Kekerasan fisik",
+                "Kekerasan verbal dan psikologis",
+                "Pelecehan seksual atau perilaku seksual yang tidak diinginkan",
+                "Intimidasi, ancaman, dan perundungan",
+                "Diskriminasi dan penyalahgunaan wewenang",
+                "Kekerasan atau pelanggaran lainnya"
+            ],
+            "Keluhan Akademik": [
+                "Intimidasi dalam kegiatan akademik",
+                "Permasalahan dosen, praktikum, perwalian, atau pembimbingan",
+                "Transparansi nilai dan evaluasi akademik",
+                "Dugaan pungutan atau permintaan yang tidak transparan dalam kegiatan akademik",
+                "Ketidakadilan dalam pelaksanaan kebijakan akademik"
+            ],
+            "Keluhan Kampus dan Kemahasiswaan": [
+                "Fasilitas dan pelayanan kampus",
+                "Organisasi dan kegiatan kemahasiswaan",
+                "Kebijakan yang berdampak pada mahasiswa",
+                "Administrasi, pelayanan, dan kategori lainnya"
+            ],
+            "Aspirasi dan Saran": [
+                "Usulan perbaikan kebijakan",
+                "Kritik konstruktif",
+                "Ide program dan peningkatan kesejahteraan mahasiswa"
+            ]
+        };
+
+        const categorySelect = document.getElementById('category');
+        const subcategorySelect = document.getElementById('subcategory');
+        const identityRadios = document.querySelectorAll('input[name="identity_type"]');
+        const identityFields = document.getElementById('identity-fields');
+        const reporterNameInput = document.getElementById('reporter_name');
+        const reporterContactInput = document.getElementById('reporter_contact');
+
+        categorySelect.addEventListener('change', (e) => {
+            const cat = e.target.value;
+            subcategorySelect.innerHTML = '<option value="">-- Pilih Subkategori --</option>';
+            if (subcategoriesData[cat]) {
+                subcategoriesData[cat].forEach(sub => {
+                    const opt = document.createElement('option');
+                    opt.value = sub;
+                    opt.textContent = sub;
+                    subcategorySelect.appendChild(opt);
+                });
+            }
+        });
+
+        identityRadios.forEach(radio => {
+            radio.addEventListener('change', (e) => {
+                if (e.target.value === 'anonymous') {
+                    identityFields.style.display = 'none';
+                    reporterNameInput.value = '';
+                    reporterContactInput.value = '';
+                } else {
+                    identityFields.style.display = 'grid';
+                    if (e.target.value === 'pseudonym') {
+                        reporterNameInput.placeholder = 'cth: Mahasiswa Pejuang / Bunga';
+                        reporterContactInput.placeholder = 'cth: email@student.itera.ac.id / 0812...';
+                    } else {
+                        reporterNameInput.placeholder = 'Nama Lengkap Anda';
+                        reporterContactInput.placeholder = 'Nomor WhatsApp / Email Aktif';
+                    }
+                }
+            });
+        });
+
+        // Form Submission
+        const form = document.getElementById('complaint-form');
+        const alertBox = document.getElementById('alert-box');
+        const successModal = document.getElementById('success-modal');
+        const resTicket = document.getElementById('res-ticket');
+        const resCode = document.getElementById('res-code');
+        const trackLink = document.getElementById('track-link');
+        const submitBtn = document.getElementById('submit-btn');
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-2"></i> Mengirim Laporan...';
+            alertBox.classList.add('hidden');
+
+            const formData = new FormData(form);
+
+            try {
+                const response = await fetch('/api/reports', {
+                    method: 'POST',
+                    body: formData
+                });
+                const data = await response.json();
+
+                if (response.ok && data.success) {
+                    resTicket.textContent = data.ticket_number;
+                    resCode.textContent = data.secret_code;
+                    trackLink.href = `tracking.html?ticket=${data.ticket_number}&code=${data.secret_code}`;
+                    successModal.classList.remove('hidden');
+                } else {
+                    throw new Error(data.error || 'Terjadi kesalahan saat mengirim laporan.');
+                }
+            } catch (err) {
+                alertBox.textContent = err.message;
+                alertBox.className = 'mb-6 p-4 rounded-xl text-sm font-medium bg-red-100 text-red-700 border border-red-200';
+                alertBox.classList.remove('hidden');
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = '<i class="fa-solid fa-paper-plane mr-2"></i> Kirim Laporan / Aspirasi';
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        });
+
+        // Check URL params for pre-selecting category if coming from homepage
+        const urlParams = new URLSearchParams(window.location.search);
+        const catParam = urlParams.get('cat');
+        if (catParam === 'kekerasan') {
+            categorySelect.value = 'Kekerasan dan Keselamatan';
+            categorySelect.dispatchEvent(new Event('change'));
+        } else if (catParam === 'akademik') {
+            categorySelect.value = 'Keluhan Akademik';
+            categorySelect.dispatchEvent(new Event('change'));
+        } else if (catParam === 'kampus') {
+            categorySelect.value = 'Keluhan Kampus dan Kemahasiswaan';
+            categorySelect.dispatchEvent(new Event('change'));
+        } else if (catParam === 'aspirasi' || urlParams.get('type') === 'aspirasi') {
+            categorySelect.value = 'Aspirasi dan Saran';
+            categorySelect.dispatchEvent(new Event('change'));
+        }
+    </script>
+</body>
+</html>

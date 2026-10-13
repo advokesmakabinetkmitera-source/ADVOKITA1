@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tentang Kami — Advokesma KM ITERA</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        iteraBlue: '#0B2545',
+                        iteraDarkBlue: '#06182E',
+                        iteraGold: '#D4AF37',
+                        iteraLightGold: '#F4D03F',
+                        iteraBg: '#F8FAFC'
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+    </style>
+</head>
+<body class="bg-iteraBg text-slate-800 antialiased flex flex-col min-h-screen">
+
+    <!-- Top Emergency Bar -->
+    <div class="bg-red-600 text-white text-xs sm:text-sm py-2 px-4 text-center font-medium flex items-center justify-center gap-2">
+        <i class="fa-solid fa-triangle-exclamation"></i>
+        <span>Butuh pertolongan darurat segera? Hubungi Hotline Darurat Advokesma: <strong>0831-4218-8314</strong></span>
+    </div>
+
+    <!-- Navigation Bar -->
+    <header class="bg-iteraBlue text-white shadow-md sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <a href="index.html" class="w-12 h-12 bg-white rounded-full flex items-center justify-center text-iteraBlue font-black text-xl shadow">
+                    <i class="fa-solid fa-scale-balanced text-iteraBlue"></i>
+                </a>
+                <div>
+                    <span class="text-xs font-semibold tracking-wider text-iteraGold uppercase block">Advokesma KM ITERA</span>
+                    <h1 class="text-base sm:text-lg font-bold tracking-tight">Tentang Kami</h1>
+                </div>
+            </div>
+
+            <!-- Desktop Nav -->
+            <nav class="hidden md:flex items-center space-x-6 text-sm font-medium">
+                <a href="index.html" class="hover:text-iteraGold transition">Beranda</a>
+                <a href="form.html" class="hover:text-iteraGold transition">Buat Pengaduan</a>
+                <a href="tracking.html" class="hover:text-iteraGold transition">Lacak Laporan</a>
+                <a href="guide.html" class="hover:text-iteraGold transition">Panduan & Alur</a>
+                <a href="about.html" class="text-iteraGold font-semibold hover:text-white transition">Tentang Kami</a>
+                <a href="faq.html" class="hover:text-iteraGold transition">FAQ & Kontak</a>
+                <a href="admin-login.html" class="bg-iteraGold text-iteraBlue px-4 py-2 rounded-lg font-bold hover:bg-yellow-400 transition shadow">
+                    <i class="fa-solid fa-lock mr-1"></i> Admin Login
+                </a>
+            </nav>
+
+            <button id="menu-btn" class="md:hidden text-white focus:outline-none text-2xl">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+
+        <div id="mobile-menu" class="hidden md:hidden bg-iteraDarkBlue px-4 pt-2 pb-4 space-y-3 border-t border-blue-900">
+            <a href="index.html" class="block hover:text-iteraGold py-1">Beranda</a>
+            <a href="form.html" class="block hover:text-iteraGold py-1">Buat Pengaduan</a>
+            <a href="tracking.html" class="block hover:text-iteraGold py-1">Lacak Laporan</a>
+            <a href="guide.html" class="block hover:text-iteraGold py-1">Panduan & Alur</a>
+            <a href="about.html" class="block text-iteraGold font-medium py-1">Tentang Kami</a>
+            <a href="faq.html" class="block hover:text-iteraGold py-1">FAQ & Kontak</a>
+            <a href="admin-login.html" class="inline-block bg-iteraGold text-iteraBlue px-4 py-2 rounded-lg font-bold mt-2">
+                <i class="fa-solid fa-lock mr-1"></i> Admin Login
+            </a>
+        </div>
+    </header>
+
+    <!-- Header Section -->
+    <section class="bg-iteraBlue text-white py-16 px-4">
+        <div class="max-w-4xl mx-auto text-center space-y-4">
+            <span class="bg-blue-800 text-iteraGold text-xs font-bold px-4 py-1.5 rounded-full border border-iteraGold/30 uppercase tracking-wider">Mengenal Lebih Dekat</span>
+            <h2 class="text-3xl sm:text-5xl font-extrabold">Kementerian Advokasi dan Kesejahteraan Mahasiswa</h2>
+            <p class="text-slate-300 text-base sm:text-lg max-w-2xl mx-auto">
+                Kementerian yang berada di bawah Keluarga Mahasiswa Institut Teknologi Sumatera (KM ITERA) yang berfokus pada pembelaan hak, kesejahteraan, dan keamanan seluruh mahasiswa.
+            </p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="py-16 px-4 max-w-4xl mx-auto space-y-12">
+        
+        <!-- Visi Misi -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="bg-white p-8 rounded-3xl shadow-sm border border-slate-200 space-y-4">
+                <div class="w-12 h-12 bg-blue-100 text-iteraBlue rounded-2xl flex items-center justify-center text-xl font-bold">
+                    <i class="fa-solid fa-eye"></i>
+                </div>
+                <h3 class="text-xl font-extrabold text-iteraBlue">Visi Advokesma</h3>
+                <p class="text-sm text-slate-600 leading-relaxed">
+                    Terwujudnya lingkungan kampus Institut Teknologi Sumatera yang aman, inklusif, berkeadilan, transparan, serta berpihak pada kesejahteraan dan hak asasi mahasiswa.
+                </p>
+            </div>
+
+            <div class="bg-white p-8 rounded-3xl shadow-sm border border-slate-200 space-y-4">
+                <div class="w-12 h-12 bg-amber-100 text-amber-700 rounded-2xl flex items-center justify-center text-xl font-bold">
+                    <i class="fa-solid fa-bullseye"></i>
+                </div>
+                <h3 class="text-xl font-extrabold text-iteraBlue">Misi Advokesma</h3>
+                <ul class="text-sm text-slate-600 space-y-2 list-disc list-inside">
+                    <li>Menyediakan saluran pengaduan dan aspirasi yang aman, rahasia, dan mudah diakses.</li>
+                    <li>Memberikan pendampingan hukum, akademik, dan psikologis bagi mahasiswa yang membutuhkan.</li>
+                    <li>Mengawal kebijakan birokrasi kampus agar berorientasi pada kepentingan mahasiswa.</li>
+                    <li>Membangun sinergi dengan seluruh elemen civitas akademika ITERA.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Peran & Fungsi -->
+        <div class="bg-white p-8 sm:p-12 rounded-3xl shadow-sm border border-slate-200 space-y-6">
+            <h3 class="text-2xl font-extrabold text-iteraBlue">Pilar Pelayanan & Advokasi</h3>
+            <p class="text-sm text-slate-600 leading-relaxed">
+                Advokesma KM ITERA hadir sebagai rumah kedua bagi mahasiswa dalam menghadapi berbagai tantangan selama berkuliah. Kami terbagi ke dalam beberapa bidang strategis:
+            </p>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 pt-4">
+                <div class="bg-slate-50 p-6 rounded-2xl border border-slate-200">
+                    <h4 class="font-bold text-iteraBlue mb-2 flex items-center gap-2">
+                        <i class="fa-solid fa-shield text-iteraGold"></i> Advokasi Hukum & Keselamatan
+                    </h4>
+                    <p class="text-xs text-slate-600">Menangani kasus kekerasan, pelecehan, perundungan, dan intimidasi dengan prinsip perlindungan korban (victim-centered).</p>
+                </div>
+                <div class="bg-slate-50 p-6 rounded-2xl border border-slate-200">
+                    <h4 class="font-bold text-iteraBlue mb-2 flex items-center gap-2">
+                        <i class="fa-solid fa-graduation-cap text-iteraGold"></i> Kesejahteraan & Akademik
+                    </h4>
+                    <p class="text-xs text-slate-600">Mengadvokasi permasalahan UKT, fasilitas kuliah, transparansi nilai, dan pelayanan dosen/akademik.</p>
+                </div>
+                <div class="bg-slate-50 p-6 rounded-2xl border border-slate-200">
+                    <h4 class="font-bold text-iteraBlue mb-2 flex items-center gap-2">
+                        <i class="fa-solid fa-bullhorn text-iteraGold"></i> Aspirasi & Kebijakan Kampus
+                    </h4>
+                    <p class="text-xs text-slate-600">Menyalurkan ide, kritik konstruktif, dan usulan kebijakan mahasiswa kepada rektorat ITERA.</p>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-iteraDarkBlue text-white pt-12 pb-8 mt-auto border-t border-blue-900">
+        <div class="max-w-7xl mx-auto px-4 text-center text-xs text-slate-400">
+            <p class="mb-1 font-semibold text-iteraGold text-sm">Mentri Advokesma KM ITERA: Andro Gustin Ginting</p>
+            <p>&copy; 2026 Kementerian Advokasi dan Kesejahteraan Mahasiswa (Advokesma) KM ITERA. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

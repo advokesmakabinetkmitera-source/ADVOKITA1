@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login — Advokesma KM ITERA</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        iteraBlue: '#0B2545',
+                        iteraDarkBlue: '#06182E',
+                        iteraGold: '#D4AF37',
+                        iteraLightGold: '#F4D03F',
+                        iteraBg: '#F8FAFC'
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+    </style>
+</head>
+<body class="bg-iteraDarkBlue text-slate-800 antialiased flex flex-col min-h-screen items-center justify-center p-4">
+
+    <div class="max-w-md w-full bg-white rounded-3xl shadow-2xl p-8 space-y-8 border border-slate-200">
+        <div class="text-center space-y-3">
+            <div class="w-16 h-16 bg-iteraBlue text-white rounded-2xl flex items-center justify-center text-2xl mx-auto shadow-lg">
+                <i class="fa-solid fa-lock text-iteraGold"></i>
+            </div>
+            <div>
+                <span class="text-xs font-bold uppercase tracking-wider text-blue-600">Portal Petugas Berwenang</span>
+                <h2 class="text-2xl font-black text-iteraBlue">Admin Advokesma KM ITERA</h2>
+            </div>
+        </div>
+
+        <div id="alert-box" class="hidden p-4 rounded-xl text-sm font-medium"></div>
+
+        <form id="login-form" class="space-y-6">
+            <div>
+                <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Username Admin</label>
+                <div class="relative">
+                    <span class="absolute inset-y-0 left-0 pl-4 flex items-center text-slate-400">
+                        <i class="fa-solid fa-user"></i>
+                    </span>
+                    <input type="text" id="username" name="username" required placeholder="Masukkan username" class="w-full bg-slate-50 border border-slate-300 rounded-xl pl-11 pr-4 py-3 text-sm focus:outline-none focus:border-iteraBlue">
+                </div>
+            </div>
+
+            <div>
+                <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Password</label>
+                <div class="relative">
+                    <span class="absolute inset-y-0 left-0 pl-4 flex items-center text-slate-400">
+                        <i class="fa-solid fa-key"></i>
+                    </span>
+                    <input type="password" id="password" name="password" required placeholder="Masukkan password" class="w-full bg-slate-50 border border-slate-300 rounded-xl pl-11 pr-4 py-3 text-sm focus:outline-none focus:border-iteraBlue">
+                </div>
+            </div>
+
+            <button type="submit" id="login-btn" class="w-full bg-iteraBlue text-iteraGold font-extrabold py-3.5 rounded-xl shadow-lg hover:bg-blue-900 transition text-base flex items-center justify-center gap-2">
+                <i class="fa-solid fa-right-to-bracket"></i> Masuk Dashboard
+            </button>
+        </form>
+
+        <div class="text-center pt-2 border-t border-slate-100">
+            <a href="index.html" class="text-xs text-slate-500 hover:text-iteraBlue font-semibold flex items-center justify-center gap-1">
+                <i class="fa-solid fa-arrow-left"></i> Kembali ke Beranda Utama
+            </a>
+        </div>
+    </div>
+
+    <script>
+        const loginForm = document.getElementById('login-form');
+        const alertBox = document.getElementById('alert-box');
+        const loginBtn = document.getElementById('login-btn');
+
+        loginForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const username = document.getElementById('username').value.trim();
+            const password = document.getElementById('password').value;
+
+            loginBtn.disabled = true;
+            loginBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-2"></i> Memproses...';
+            alertBox.classList.add('hidden');
+
+            try {
+                const response = await fetch('/api/admin/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ username, password })
+                });
+                const data = await response.json();
+
+                if (response.ok && data.success) {
+                    window.location.href = 'admin-dashboard.html';
+                } else {
+                    throw new Error(data.error || 'Login gagal.');
+                }
+            } catch (err) {
+                alertBox.textContent = err.message;
+                alertBox.className = 'p-4 rounded-xl text-sm font-medium bg-red-100 text-red-700 border border-red-200';
+                alertBox.classList.remove('hidden');
+                loginBtn.disabled = false;
+                loginBtn.innerHTML = '<i class="fa-solid fa-right-to-bracket"></i> Masuk Dashboard';
+            }
+        });
+    </script>
+</body>
+</html>

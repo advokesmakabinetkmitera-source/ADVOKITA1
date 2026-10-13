@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lacak Laporan — Advokesma KM ITERA</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        iteraBlue: '#0B2545',
+                        iteraDarkBlue: '#06182E',
+                        iteraGold: '#D4AF37',
+                        iteraLightGold: '#F4D03F',
+                        iteraBg: '#F8FAFC'
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+    </style>
+</head>
+<body class="bg-iteraBg text-slate-800 antialiased flex flex-col min-h-screen">
+
+    <!-- Top Emergency Bar -->
+    <div class="bg-red-600 text-white text-xs sm:text-sm py-2 px-4 text-center font-medium flex items-center justify-center gap-2">
+        <i class="fa-solid fa-triangle-exclamation"></i>
+        <span>Butuh pertolongan darurat segera? Hubungi Hotline Darurat Advokesma: <strong>0831-4218-8314</strong></span>
+    </div>
+
+    <!-- Navigation Bar -->
+    <header class="bg-iteraBlue text-white shadow-md sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <a href="index.html" class="w-12 h-12 bg-white rounded-full flex items-center justify-center text-iteraBlue font-black text-xl shadow">
+                    <i class="fa-solid fa-scale-balanced text-iteraBlue"></i>
+                </a>
+                <div>
+                    <span class="text-xs font-semibold tracking-wider text-iteraGold uppercase block">Advokesma KM ITERA</span>
+                    <h1 class="text-base sm:text-lg font-bold tracking-tight">Pelacakan Laporan</h1>
+                </div>
+            </div>
+
+            <!-- Desktop Nav -->
+            <nav class="hidden md:flex items-center space-x-6 text-sm font-medium">
+                <a href="index.html" class="hover:text-iteraGold transition">Beranda</a>
+                <a href="form.html" class="hover:text-iteraGold transition">Buat Pengaduan</a>
+                <a href="tracking.html" class="text-iteraGold font-semibold hover:text-white transition">Lacak Laporan</a>
+                <a href="guide.html" class="hover:text-iteraGold transition">Panduan & Alur</a>
+                <a href="faq.html" class="hover:text-iteraGold transition">FAQ & Kontak</a>
+                <a href="admin-login.html" class="bg-iteraGold text-iteraBlue px-4 py-2 rounded-lg font-bold hover:bg-yellow-400 transition shadow">
+                    <i class="fa-solid fa-lock mr-1"></i> Admin Login
+                </a>
+            </nav>
+
+            <button id="menu-btn" class="md:hidden text-white focus:outline-none text-2xl">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+
+        <div id="mobile-menu" class="hidden md:hidden bg-iteraDarkBlue px-4 pt-2 pb-4 space-y-3 border-t border-blue-900">
+            <a href="index.html" class="block hover:text-iteraGold py-1">Beranda</a>
+            <a href="form.html" class="block hover:text-iteraGold py-1">Buat Pengaduan</a>
+            <a href="tracking.html" class="block text-iteraGold font-medium py-1">Lacak Laporan</a>
+            <a href="guide.html" class="block hover:text-iteraGold py-1">Panduan & Alur</a>
+            <a href="faq.html" class="block hover:text-iteraGold py-1">FAQ & Kontak</a>
+            <a href="admin-login.html" class="inline-block bg-iteraGold text-iteraBlue px-4 py-2 rounded-lg font-bold mt-2">
+                <i class="fa-solid fa-lock mr-1"></i> Admin Login
+            </a>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="py-12 px-4 flex-grow max-w-4xl mx-auto w-full">
+        
+        <div class="text-center mb-10 space-y-3">
+            <h2 class="text-3xl font-extrabold text-iteraBlue">Lacak Status Laporan Anda</h2>
+            <p class="text-slate-600 text-sm sm:text-base max-w-xl mx-auto">
+                Masukkan Nomor Tiket dan Kode Rahasia yang Anda peroleh saat mengirimkan laporan untuk melihat status terkini dan riwayat penanganan.
+            </p>
+        </div>
+
+        <!-- Tracking Form Card -->
+        <div class="bg-white rounded-3xl shadow-sm border border-slate-200 p-6 sm:p-8 mb-8">
+            <form id="track-form" class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1 uppercase tracking-wider">Nomor Tiket</label>
+                    <input type="text" id="ticket_number" name="ticket_number" required placeholder="cth: ADV-2026-XXXX" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-iteraBlue uppercase font-mono">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1 uppercase tracking-wider">Kode Rahasia</label>
+                    <input type="text" id="secret_code" name="secret_code" required placeholder="cth: SEC-XXXX" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-iteraBlue uppercase font-mono">
+                </div>
+                <div class="flex items-end">
+                    <button type="submit" id="track-btn" class="w-full bg-iteraBlue text-white font-bold py-3 rounded-xl hover:bg-blue-900 transition text-sm flex items-center justify-center gap-2 h-[46px]">
+                        <i class="fa-solid fa-magnifying-glass"></i> Cek Status
+                    </button>
+                </div>
+            </form>
+        </div>
+
+        <div id="alert-box" class="hidden mb-8 p-4 rounded-xl text-sm font-medium"></div>
+
+        <!-- Result Section -->
+        <div id="result-container" class="hidden space-y-8">
+            
+            <!-- Summary Status Card -->
+            <div class="bg-white rounded-3xl shadow-sm border border-slate-200 p-6 sm:p-8 space-y-6">
+                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center border-b border-slate-200 pb-6 gap-4">
+                    <div>
+                        <span class="text-xs font-bold text-slate-500 uppercase tracking-wider block mb-1">Nomor Tiket</span>
+                        <h3 id="disp-ticket" class="text-xl sm:text-2xl font-black text-iteraBlue font-mono"></h3>
+                    </div>
+                    <div>
+                        <span id="disp-status" class="px-4 py-2 rounded-full text-xs font-extrabold uppercase tracking-wide inline-block shadow-sm"></span>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 text-sm">
+                    <div>
+                        <span class="text-slate-500 text-xs block font-semibold mb-1">Kategori Laporan</span>
+                        <p id="disp-category" class="font-bold text-iteraBlue"></p>
+                        <p id="disp-subcategory" class="text-xs text-slate-600 mt-0.5"></p>
+                    </div>
+                    <div>
+                        <span class="text-slate-500 text-xs block font-semibold mb-1">Tanggal Pengiriman</span>
+                        <p id="disp-date" class="font-bold text-slate-700"></p>
+                    </div>
+                    <div>
+                        <span class="text-slate-500 text-xs block font-semibold mb-1">Petugas Penanggung Jawab</span>
+                        <p id="disp-officer" class="font-bold text-iteraBlue"></p>
+                    </div>
+                </div>
+
+                <!-- Admin Message Box -->
+                <div class="bg-blue-50 border border-blue-200 rounded-2xl p-5 space-y-2">
+                    <h4 class="text-xs font-bold text-blue-800 uppercase tracking-wider flex items-center gap-1.5">
+                        <i class="fa-solid fa-comment-dots"></i> Pesan Terbaru dari Petugas Advokesma
+                    </h4>
+                    <p id="disp-msg" class="text-sm text-slate-700 leading-relaxed"></p>
+                </div>
+            </div>
+
+            <!-- Detail Laporan Anda -->
+            <div class="bg-white rounded-3xl shadow-sm border border-slate-200 p-6 sm:p-8 space-y-6">
+                <h4 class="text-lg font-bold text-iteraBlue flex items-center gap-2">
+                    <i class="fa-solid fa-file-lines text-iteraGold"></i> Detail Pengaduan
+                </h4>
+
+                <div class="space-y-4 text-sm">
+                    <div>
+                        <span class="text-slate-500 text-xs font-semibold block mb-1">Kronologi / Isi Laporan</span>
+                        <div id="disp-chronology" class="bg-slate-50 p-4 rounded-xl text-slate-700 leading-relaxed whitespace-pre-line border border-slate-200"></div>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <span class="text-slate-500 text-xs font-semibold block mb-1">Fakultas / Program Studi</span>
+                            <p id="disp-prodi" class="font-medium text-slate-700">-</p>
+                        </div>
+                        <div>
+                            <span class="text-slate-500 text-xs font-semibold block mb-1">Waktu & Lokasi Kejadian</span>
+                            <p id="disp-location" class="font-medium text-slate-700">-</p>
+                        </div>
+                    </div>
+
+                    <div id="attachment-box" class="hidden pt-2">
+                        <span class="text-slate-500 text-xs font-semibold block mb-2">Lampiran Bukti</span>
+                        <a id="disp-attachment" href="#" target="_blank" class="inline-flex items-center gap-2 bg-slate-100 hover:bg-slate-200 text-iteraBlue px-4 py-2.5 rounded-xl text-xs font-bold transition border border-slate-300">
+                            <i class="fa-solid fa-paperclip"></i> Lihat Berkas Lampiran
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Riwayat Status -->
+            <div class="bg-white rounded-3xl shadow-sm border border-slate-200 p-6 sm:p-8 space-y-6">
+                <h4 class="text-lg font-bold text-iteraBlue flex items-center gap-2">
+                    <i class="fa-solid fa-timeline text-iteraGold"></i> Riwayat Perubahan Status
+                </h4>
+
+                <div id="history-list" class="space-y-4 border-l-2 border-blue-200 pl-4 sm:pl-6 ml-2">
+                    <!-- Dynamic timeline items -->
+                </div>
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-iteraDarkBlue text-white pt-12 pb-8 mt-auto border-t border-blue-900">
+        <div class="max-w-7xl mx-auto px-4 text-center text-xs text-slate-400">
+            <p class="mb-1 font-semibold text-iteraGold text-sm">Mentri Advokesma KM ITERA: Andro Gustin Ginting</p>
+            <p>&copy; 2026 Kementerian Advokasi dan Kesejahteraan Mahasiswa (Advokesma) KM ITERA. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        const trackForm = document.getElementById('track-form');
+        const alertBox = document.getElementById('alert-box');
+        const resultContainer = document.getElementById('result-container');
+        const trackBtn = document.getElementById('track-btn');
+
+        trackForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const ticket = document.getElementById('ticket_number').value.trim();
+            const code = document.getElementById('secret_code').value.trim();
+
+            if (!ticket || !code) return;
+
+            trackBtn.disabled = true;
+            trackBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-2"></i> Mencari...';
+            alertBox.classList.add('hidden');
+            resultContainer.classList.add('hidden');
+
+            try {
+                const response = await fetch('/api/reports/track', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ ticket_number: ticket, secret_code: code })
+                });
+                const data = await response.json();
+
+                if (response.ok && data.success) {
+                    const r = data.report;
+                    document.getElementById('disp-ticket').textContent = r.ticket_number;
+                    document.getElementById('disp-category').textContent = r.category;
+                    document.getElementById('disp-subcategory').textContent = r.subcategory || '';
+                    document.getElementById('disp-date').textContent = new Date(r.created_at).toLocaleString('id-ID');
+                    document.getElementById('disp-officer').textContent = r.assigned_officer;
+                    document.getElementById('disp-msg').textContent = r.admin_message;
+                    document.getElementById('disp-chronology').textContent = r.chronology;
+                    document.getElementById('disp-prodi').textContent = r.faculty_prodi || 'Tidak dicantumkan';
+                    document.getElementById('disp-location').textContent = r.incident_time_location || 'Tidak dicantumkan';
+
+                    // Status badge styling
+                    const statusBadge = document.getElementById('disp-status');
+                    statusBadge.textContent = r.status;
+                    if (r.status === 'Selesai') {
+                        statusBadge.className = 'px-4 py-2 rounded-full text-xs font-extrabold uppercase tracking-wide inline-block bg-emerald-100 text-emerald-800 border border-emerald-300';
+                    } else if (r.status === 'Dalam Tindak Lanjut') {
+                        statusBadge.className = 'px-4 py-2 rounded-full text-xs font-extrabold uppercase tracking-wide inline-block bg-blue-100 text-blue-800 border border-blue-300';
+                    } else if (r.status === 'Membutuhkan Informasi Tambahan') {
+                        statusBadge.className = 'px-4 py-2 rounded-full text-xs font-extrabold uppercase tracking-wide inline-block bg-amber-100 text-amber-800 border border-amber-300';
+                    } else {
+                        statusBadge.className = 'px-4 py-2 rounded-full text-xs font-extrabold uppercase tracking-wide inline-block bg-slate-100 text-slate-800 border border-slate-300';
+                    }
+
+                    // Attachment
+                    const attBox = document.getElementById('attachment-box');
+                    const attLink = document.getElementById('disp-attachment');
+                    if (r.attachment_path) {
+                        attLink.href = r.attachment_path;
+                        attBox.classList.remove('hidden');
+                    } else {
+                        attBox.classList.add('hidden');
+                    }
+
+                    // History timeline
+                    const historyList = document.getElementById('history-list');
+                    historyList.innerHTML = '';
+                    data.history.forEach(h => {
+                        const div = document.createElement('div');
+                        div.className = 'relative pb-4 last:pb-0';
+                        div.innerHTML = `
+                            <div class="absolute -left-[31px] sm:-left-[39px] w-4 h-4 bg-iteraGold rounded-full border-2 border-white shadow"></div>
+                            <span class="text-xs text-slate-400 font-semibold">${new Date(h.created_at).toLocaleString('id-ID')}</span>
+                            <h5 class="text-sm font-bold text-iteraBlue mt-0.5">Status: ${h.status}</h5>
+                            <p class="text-xs text-slate-600 mt-1">${h.message}</p>
+                        `;
+                        historyList.appendChild(div);
+                    });
+
+                    resultContainer.classList.remove('hidden');
+                } else {
+                    throw new Error(data.error || 'Laporan tidak ditemukan.');
+                }
+            } catch (err) {
+                alertBox.textContent = err.message;
+                alertBox.className = 'mb-8 p-4 rounded-xl text-sm font-medium bg-red-100 text-red-700 border border-red-200';
+                alertBox.classList.remove('hidden');
+            } finally {
+                trackBtn.disabled = false;
+                trackBtn.innerHTML = '<i class="fa-solid fa-magnifying-glass"></i> Cek Status';
+            }
+        });
+
+        // Auto-fill from URL params if available
+        const urlParams = new URLSearchParams(window.location.search);
+        const ticketParam = urlParams.get('ticket');
+        const codeParam = urlParams.get('code');
+        if (ticketParam && codeParam) {
+            document.getElementById('ticket_number').value = ticketParam;
+            document.getElementById('secret_code').value = codeParam;
+            trackForm.dispatchEvent(new Event('submit'));
+        }
+    </script>
+</body>
+</html>
